@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import AppTable from './components/AppTable/AppTable'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppTable />
   </React.StrictMode>,
   document.getElementById('root')
 );
