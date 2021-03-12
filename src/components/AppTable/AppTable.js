@@ -1,26 +1,30 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Table from '../Table/Table';
 import Pagination from '../Pagination/Pagination';
-import localDataProvider from '../communication/LocalDataProvider';
 
 export default class AppTable extends Component {
   state = {
+    headers: this.props.dataProvider.getHeader(),
+    tableData: this.props.dataProvider.getData()
+  }
 
-    headers: localDataProvider.getHeader(),
-    
-    tableData: localDataProvider.getData()
+  getNewTable = () => {
+    this.setState({
+      tableData: this.props.dataProvider.getData()
+    })
   }
 
   render() {
-
-    const { headers, tableData } = this.state;
-
+    const {headers, tableData} = this.state;
     return (
       <div>
         <Table
-          headers={ headers }
-          data={ tableData }
+          headers={headers}
+          data={tableData}
+          setFilter={this.props.dataProvider.setFilter}
+          setSort={this.props.dataProvider.setSort}
+          getNewTable={this.getNewTable}
         />
         <Pagination/>
       </div>

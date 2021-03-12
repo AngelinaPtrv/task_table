@@ -10,6 +10,9 @@ export default class Table extends Component {
       <table>
         <Headers
           headers={headers}
+          setFilter={this.props.setFilter}
+          setSort={this.props.setSort}
+          getNewTable = {this.props.getNewTable}
         />
         <TableData
           data={data}
