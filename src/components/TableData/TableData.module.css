@@ -1,0 +1,6 @@
+.cell {
+  text-align: right;
+  border: 1px solid #c0c0c0;
+  border-left: none;
+  border-right: none;
+}
