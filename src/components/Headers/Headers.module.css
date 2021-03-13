@@ -1,0 +1,17 @@
+.header {
+  margin-bottom: 10px;
+}
+
+.button {
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: #b0c4de;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+  color: #fff;
+  width: 10em;
+}
+
+button :focus {
+  outline: #b0c4de auto 1px;
+}
