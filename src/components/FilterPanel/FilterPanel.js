@@ -4,7 +4,7 @@ export default class FilterPanel extends Component {
   render() {
     return (
       <div>
-        <input/>
+        <input onChange={this.props.setFilter}/>
       </div>
     )
   }
