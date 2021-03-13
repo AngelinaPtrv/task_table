@@ -26,7 +26,11 @@ export default class AppTable extends Component {
           setSort={this.props.dataProvider.setSort}
           getNewTable={this.getNewTable}
         />
-        <Pagination/>
+        <Pagination
+          gotoPage={this.props.dataProvider.gotoPage}
+          getTotalPages={this.props.dataProvider.getTotalPages}
+          getNewTable={this.getNewTable}
+        />
       </div>
     )
   }
