@@ -1,14 +1,6 @@
 import tableOrder from "./order";
 
 class LocalDataProvider {
-  options = {
-    sort: tableOrder.comparator("id"),
-    filter: [],
-    pagination: {
-      limit: 10,
-      page: 1
-    }
-  };
 
   data = [
     {id: 1, firstName: 'Ang', secondName: 'Ptrv', city: 'Kzn', telephone: 919},
@@ -34,6 +26,20 @@ class LocalDataProvider {
     {id: 21, firstName: 'jhg', secondName: 'Sn', city: 'ver', telephone: 100}
   ];
 
+  options = {
+    sort: tableOrder.comparator("id"),
+    filter: [],
+    pagination: {
+      totalRecords: this.data.length,
+      limit: 3,
+      page: 0
+    }
+  };
+
+  getTotalPages = () => {
+    return Math.ceil(this.options.pagination.totalRecords/this.options.pagination.limit);
+  }
+
   setSort = (sortField) => {
     tableOrder.changeOrder(sortField);
     this.options.sort = tableOrder.comparator(sortField);
@@ -48,6 +54,18 @@ class LocalDataProvider {
       }
     }
     this.options.filter.push({field: fieldName, value: value});
+  }
+
+  gotoPage = (page) => {
+    this.options.pagination.page = page;
+  }
+
+  applyPagination = (data) => {
+    const page = this.options.pagination.page
+    const limit = this.options.pagination.limit;
+    const offset = (page) * limit;
+    const result = data.slice(offset, limit + offset);
+    return result;
   }
 
   applyFilter = (filterArr, dataToFilter) => {
@@ -75,7 +93,8 @@ class LocalDataProvider {
   }
 
   applyMutations = (dataForMutation) => {
-    return this.applySort(this.options.sort, this.applyFilter(this.options.filter, dataForMutation));
+    const result = this.applySort(this.options.sort, this.applyFilter(this.options.filter, dataForMutation))
+    return this.applyPagination(result);
   }
 
   getData = () => {
