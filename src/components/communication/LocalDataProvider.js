@@ -31,10 +31,15 @@ class LocalDataProvider {
     filter: [],
     pagination: {
       totalRecords: this.data.length,
-      limit: 3,
+      arrLimit: [5, 10, 15, 20, 30],
+      limit: 5,
       page: 0
     }
   };
+
+  getPageSize = (size) => {
+    this.options.pagination.limit = size;
+  }
 
   getTotalPages = () => {
     return Math.ceil(this.options.pagination.totalRecords/this.options.pagination.limit);
@@ -61,11 +66,10 @@ class LocalDataProvider {
   }
 
   applyPagination = (data) => {
-    const page = this.options.pagination.page
-    const limit = this.options.pagination.limit;
-    const offset = (page) * limit;
-    const result = data.slice(offset, limit + offset);
-    return result;
+    const page = +this.options.pagination.page;
+    const limit = +this.options.pagination.limit;
+    const offset = page * limit;
+    return data.slice(offset, limit + offset);
   }
 
   applyFilter = (filterArr, dataToFilter) => {
