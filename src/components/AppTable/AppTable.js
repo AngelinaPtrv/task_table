@@ -28,6 +28,8 @@ export default class AppTable extends Component {
           setFilter={dataProvider.setFilter}
           setSort={dataProvider.setSort}
           getNewTable={this.getNewTable}
+          getNewLine={dataProvider.getNewLine}
+          setNewLine={dataProvider.setNewLine}
         />
         <Pagination
           gotoPage={dataProvider.gotoPage}
