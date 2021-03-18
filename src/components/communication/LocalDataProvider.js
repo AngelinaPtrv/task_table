@@ -27,13 +27,26 @@ class LocalDataProvider {
   ];
 
   options = {
+    selected: {
+      checkbox: false
+    },
     sort: tableOrder.comparator("id"),
     filter: [],
     pagination: {
       totalRecords: this.data.length,
-      arrLimit: [5, 10, 15, 20, 30],
-      limit: 5,
+      arrLimit: [10, 15, 20, 30],
+      limit: 10,
       page: 0
+    },
+    addLine: {
+      newLine: {
+        checkbox: false,
+        id: null,
+        firstName: null,
+        secondName: null,
+        city: null,
+        telephone: null
+      }
     }
   };
 
@@ -42,7 +55,11 @@ class LocalDataProvider {
   }
 
   getTotalPages = () => {
-    return Math.ceil(this.options.pagination.totalRecords/this.options.pagination.limit);
+    return Math.ceil(this.options.pagination.totalRecords / this.options.pagination.limit);
+  }
+
+  getNewLine = () => {
+    return {...this.options.addLine.newLine};
   }
 
   setSort = (sortField) => {
@@ -59,6 +76,10 @@ class LocalDataProvider {
       }
     }
     this.options.filter.push({field: fieldName, value: value});
+  }
+
+  setNewLine = (row) => {
+    return this.data.push(row);
   }
 
   gotoPage = (page) => {
@@ -97,7 +118,7 @@ class LocalDataProvider {
   }
 
   applyMutations = (dataForMutation) => {
-    const result = this.applySort(this.options.sort, this.applyFilter(this.options.filter, dataForMutation))
+    const result = this.applySort(this.options.sort, this.applyFilter(this.options.filter, dataForMutation));
     return this.applyPagination(result);
   }
 
