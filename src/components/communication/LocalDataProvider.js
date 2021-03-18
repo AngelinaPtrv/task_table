@@ -40,7 +40,6 @@ class LocalDataProvider {
     },
     addLine: {
       newLine: {
-        checkbox: false,
         id: null,
         firstName: null,
         secondName: null,
