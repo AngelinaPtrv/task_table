@@ -1,5 +1,10 @@
 .header {
-  margin-bottom: 10px;
+  background-color: #c4c4c4;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.cell {
+  border-left: 1px solid #c0c0c0;
 }
 
 .button {
@@ -10,8 +15,4 @@
   box-shadow: 0 5px 5px rgba(0,0,0,0.25);
   color: #fff;
   width: 10em;
-}
-
-button :focus {
-  outline: #b0c4de auto 1px;
 }

@@ -18,12 +18,21 @@ export default class Headers extends Component {
   }
 
   render() {
-    const {headers} = this.props;
+    const {headers, selectAllCheckbox} = this.props;
     return (
-      <thead className={styles.header}>
-      <tr>
+      <thead>
+      <tr className={styles.header}>
+        <th>
+          <input
+            type="checkbox"
+            onChange={selectAllCheckbox}
+          />
+        </th>
         {headers.map(head => (
-          <th key={head.name}>
+          <th
+            className={styles.cell}
+            key={head.name}
+          >
             <button
               className={styles.button}
               onClick={() => this.sort(head.name)}>

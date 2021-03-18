@@ -36,11 +36,20 @@ export default class TableData extends Component {
     return (
       <tbody>
       {data.map((data, index) => (
-        <TableRow key={index} data={data}/>
+        <TableRow
+          key={index}
+          data={data}
+          index={index}
+          checkInput={this.props.setCheckBox}
+          checkedInput={this.props.checkedInputs[index]}
+        />
       ))}
       <tr>
         {this.state.new &&
-        <NewTableRow data={ this.props.getNewLine() } callback={this.setValueOfNewLine}/>
+        <NewTableRow
+          data={this.props.getNewLine()}
+          callback={this.setValueOfNewLine}
+        />
         }
       </tr>
       <tr>
